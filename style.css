@@ -67,6 +67,16 @@ body {
   margin: 0 auto;
 }
 
+.result {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  /* color: #83f383; */
+  color: #57dd5b;
+  font-weight: 600;
+}
+
 #reset-btn {
   position: absolute;
   right: 1rem;
@@ -83,4 +93,13 @@ body {
 }
 #reset-btn:hover {
   background: rgba(255, 255, 255, 0.158);
+}
+
+.game-rules {
+  color: rgb(196, 196, 196);
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+.score-rules {
+  font-size: 0.8rem;
 }
