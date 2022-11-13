@@ -1,0 +1,86 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(20 20 20);
+  color: rgb(238, 238, 238);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: center;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+#game-board {
+  width: 90%;
+  max-width: 603px;
+  min-height: 200px;
+  margin: 0 auto;
+  display: grid;
+  /* grid-template-columns: repeat(3, minmax(190px, 1fr)); */
+  grid-template-columns: repeat(4, 1fr);
+  overflow: hidden;
+}
+
+.game-tile {
+  background-color: rgb(46, 46, 46);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid plum;
+  /* min-height: 190px; */
+  /* min-height: 120px; */
+  aspect-ratio: 1/1;
+  transform-style: preserve-3d;
+  transform: rotateY(180deg);
+  transition: background-color 100ms ease-out,
+    transform 0.6s cubic-bezier(0.38, 0.02, 0.09, 1.01);
+  /* flip animation? */
+  position: relative;
+}
+.game-tile:not(.active):hover {
+  background-color: rgba(255, 255, 255, 0.068);
+}
+
+.active {
+  /* transform: rotateY(180deg); */
+  transform: rotateY(0deg);
+  background-color: #035244;
+}
+
+.done {
+  background-color: #3778a3;
+}
+
+#score {
+  color: indianred;
+}
+
+.game-header {
+  position: relative;
+  width: 90%;
+  max-width: 603px;
+  margin: 0 auto;
+}
+
+#reset-btn {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  border-radius: 5px;
+  font-family: inherit;
+  font-size: inherit;
+  background: rgb(48, 47, 47);
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+#reset-btn:hover {
+  background: rgba(255, 255, 255, 0.158);
+}
