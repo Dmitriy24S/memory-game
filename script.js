@@ -22,6 +22,7 @@ let allPlayableGameTiles = document.getElementsByClassName('game-tile')
 // }
 const resetBtn = document.getElementById('reset-btn')
 resetBtn.addEventListener('click', resetGame)
+let timeoutNoCardMatchResult
 
 const createTiles = () => {
   for (let index = 0; index < numOfGameTiles; index++) {
@@ -63,7 +64,7 @@ function paintTileOnClick(el) {
 function checkTiles() {
   // if Tiles match
   if (selectedTiles[0].dataset.id === selectedTiles[1].dataset.id) {
-    console.log('TileS MATCH')
+    console.log('TileS MATCH', selectedTiles)
 
     // add completed css style
     selectedTiles.forEach((Tile) => {
@@ -94,7 +95,19 @@ function checkTiles() {
     console.log('no match', selectedTiles)
     // not match -> give time to flip 2nd Tile -> reset selected Tiles -> hide text context, remove css flip style (unflip Tile), update score
 
-    setTimeout(() => {
+    // setTimeout(() => {
+    //   Array.from(allGameTiles).forEach((tile) => {
+    //   selectedTiles.forEach((tile) => {
+    //     tile.textContent = ''
+    //     tile.classList.remove('active')
+    //   })
+    //   selectedTiles = []
+    //   score--
+    //   scoreElement.textContent = score
+    // }, 800)
+
+    // fixed: bug: if selected 2 wrong Tiles + quickly select reset game -> score updates after timeout after already being reset to 0 -> to -1 score
+    timeoutNoCardMatchResult = setTimeout(() => {
       //   Array.from(allGameTiles).forEach((tile) => {
       selectedTiles.forEach((tile) => {
         tile.textContent = ''
@@ -104,12 +117,19 @@ function checkTiles() {
       score--
       scoreElement.textContent = score
     }, 800)
-    // TODO: bug: if selected 2 wrong Tiles + quickly select reset game -> score updates after timeout after already being reset to 0 -> to -1 score
   }
+}
+
+const clearTimeoutNoCardMatchResult = () => {
+  console.log(timeoutNoCardMatchResult)
+  clearTimeout(timeoutNoCardMatchResult)
+  console.log('clearing timeout NoCardMatchResult')
 }
 
 function resetGame() {
   console.log('reset game')
+  clearTimeoutNoCardMatchResult()
+
   // get all tiles (played and unplayed)
   let allGameTiles = document.getElementsByClassName('game-tile')
   // reset all tiles style (flip back) and hide text content
