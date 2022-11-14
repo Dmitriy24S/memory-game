@@ -13,6 +13,7 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
+  margin-bottom: 4rem;
 }
 
 #game-board,
@@ -24,7 +25,9 @@ body {
   display: grid;
   /* grid-template-columns: repeat(3, minmax(190px, 1fr)); */
   grid-template-columns: repeat(4, 1fr);
-  overflow: hidden;
+  /* overflow: hidden; */
+  /* show tooltip outside game board absolute */
+  position: relative;
 }
 
 .game-tile {
@@ -109,11 +112,33 @@ body {
   font-size: 0.8rem;
 }
 
+.info-tooltip {
+  position: absolute;
+  z-index: 10;
+  bottom: -2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  background: hsl(0, 0%, 38%);
+  color: #e3e3e3;
+  border-radius: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* cursor: pointer; */
+  /* pointer-events: hover; */
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+.info-tooltip:hover {
+  background: hsl(0, 0%, 48%);
+}
+
 /* ##########################
           Game Board v2
  ############################*/
 #game-board-two {
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
 }
 
 .game-tile-two {
